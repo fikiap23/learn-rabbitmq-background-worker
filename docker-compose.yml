@@ -25,6 +25,9 @@ services:
       - .env
     environment:
       RABBITMQ_URI: amqp://${RABBITMQ_USER}:${RABBITMQ_PASS}@rabbitmq:5672
+    volumes:
+      - ./api-service:/app
+      - /app/node_modules
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -36,6 +39,9 @@ services:
       - .env
     environment:
       RABBITMQ_URI: amqp://${RABBITMQ_USER}:${RABBITMQ_PASS}@rabbitmq:5672
+    volumes:
+      - ./worker-service:/app
+      - /app/node_modules
     depends_on:
       rabbitmq:
         condition: service_healthy
